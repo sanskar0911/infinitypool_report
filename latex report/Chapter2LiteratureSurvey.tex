@@ -1,0 +1,100 @@
+% Chapter 2 Literature Survey
+
+\chapter{Study Of the System} \label{chap2}
+
+\newpage
+
+\section{Literature Survey}
+
+This section reviews key research papers and publications relevant to backtesting equity strategies, technical analysis indicators, and AI-driven quantitative finance.
+
+\subsection{Paper 1: ``A Comprehensive Review of Backtesting Frameworks'' (Bailey et al., 2014) \cite{article15}}
+
+Bailey et al. provide a foundational analysis of the statistical pitfalls inherent in backtesting quantitative investment strategies. The paper introduces the concept of the \textit{Deflated Sharpe Ratio}, which adjusts the conventional Sharpe Ratio for the number of trials performed during strategy selection. The authors demonstrate that multiple testing bias (data snooping) inflates reported Sharpe Ratios by up to 50\% in typical academic studies. Their recommended framework includes out-of-sample validation, walk-forward analysis, and minimum sample size requirements---all of which are implemented in our system.
+
+\subsection{Paper 2: ``Technical Analysis in the Indian Stock Market'' (Debasish \& Mishra, 2016) \cite{2016}}
+
+This study evaluates the effectiveness of moving average crossover strategies on NSE-listed stocks, specifically analyzing Simple Moving Average (SMA) and Exponential Moving Average (EMA) indicators on Nifty 50 constituent stocks. The authors found that SMA(20, 50) and EMA(12, 26) crossover strategies produced statistically significant excess returns during trending market regimes but underperformed during sideways markets. Our framework extends this work by implementing regime-specific performance analysis and automated regime classification.
+
+\subsection{Paper 3: ``Risk-Adjusted Performance Metrics for Systematic Trading'' (Gonzalez \& Woods, 2012) \cite{Gonzalez12}}
+
+Gonzalez and Woods present a comprehensive taxonomy of risk-adjusted performance metrics for evaluating systematic trading strategies. The paper provides mathematical formulations for CAGR, Sharpe Ratio, Sortino Ratio, Calmar Ratio, Maximum Drawdown, Profit Factor, and Information Ratio. Their work emphasizes that no single metric is sufficient for strategy evaluation; instead, a holistic suite of complementary KPIs is required. Our metrics engine implements all metrics described in their framework.
+
+\subsection{Paper 4: ``Agentic AI for Quantitative Research'' (Varma, 2013) \cite{satish13}}
+
+This thesis explores the application of agentic AI workflows in quantitative financial research. The author proposes a controlled loop architecture where an AI agent iteratively evaluates intermediate research outputs against predefined acceptance criteria before generating final reports. The work introduces the concept of ``bounded autonomy''---allowing the agent to iterate while maintaining strict stopping conditions to prevent overfitting. Our LangGraph-based Loop Engineering implementation directly adopts this paradigm with configurable maximum iterations and Sharpe Ratio acceptance thresholds.
+
+\subsection{Paper 5: ``Transaction Cost Analysis and Slippage Modeling'' (TPR \& LBS, 2016) \cite{techreport14}}
+
+This technical report provides empirical models for estimating transaction costs and execution slippage in equity markets. The authors calibrate slippage models for both developed and emerging markets, finding that Indian equity markets exhibit average slippage of 0.03\%--0.08\% for liquid large-cap stocks. Our backtesting engine implements configurable slippage (default 0.05\%) and transaction cost rates (default 0.1\%) based on these empirical findings.
+
+\vspace{0.5cm}
+\subsection{Comparison of Reviewed Literature}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of Literature Survey Papers}
+\label{tab:litsurvey}
+\small
+\begin{tabular}{|p{2.5cm}|p{3cm}|p{3cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Paper} & \textbf{Focus Area} & \textbf{Key Contribution} & \textbf{Market} & \textbf{Limitation} \\
+\hline
+Bailey et al. (2014) & Backtesting bias & Deflated Sharpe Ratio & US Equities & No LLM integration \\
+\hline
+Debasish \& Mishra (2016) & Technical indicators & SMA/EMA on NSE & Indian Equities & No cost modeling \\
+\hline
+Gonzalez \& Woods (2012) & Risk metrics & Comprehensive KPI suite & General & No automation \\
+\hline
+Varma (2013) & Agentic AI & Controlled loop research & General & No backtesting \\
+\hline
+TPR \& LBS (2016) & Transaction costs & Slippage calibration & Emerging Markets & No strategy layer \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Existing Systems}
+
+Several existing backtesting frameworks and platforms were analyzed during the design phase of this project:
+
+\subsection{Backtrader (Python)}
+Backtrader is an open-source Python backtesting library offering event-driven simulation with support for multiple data feeds and broker emulation. \textbf{Limitations:} Does not provide built-in benchmark comparison, lacks AI/LLM integration, requires significant boilerplate code for portfolio constraints, and has limited experiment suite capabilities.
+
+\subsection{Zipline (Quantopian)}
+Zipline was the backtesting engine powering the Quantopian platform. It provides minute-level backtesting with calendar-aware scheduling. \textbf{Limitations:} Primarily calibrated for US equities (NYSE/NASDAQ calendars), lacks NSE holiday support, the project is effectively unmaintained after Quantopian's closure in 2020, and does not support LLM-driven analysis.
+
+\subsection{VectorBT}
+VectorBT is a high-performance vectorized backtesting library built on NumPy and Pandas. It excels at rapid parameter sweeps through vectorized operations. \textbf{Limitations:} Lacks event-driven execution modeling (no realistic slippage/commission per trade), does not enforce portfolio-level constraints (liquidity, max positions), and provides no experiment validation framework.
+
+\subsection{QuantConnect / LEAN}
+QuantConnect provides a cloud-based algorithmic trading platform with a C\#/Python engine (LEAN). It offers multi-asset backtesting with live trading connectivity. \textbf{Limitations:} Cloud-dependent architecture, proprietary data feeds, steep learning curve, and no integrated agentic AI workflow capabilities.
+
+\vspace{0.5cm}
+\begin{table}[H]
+\centering
+\caption{Comparison of Existing Backtesting Systems}
+\label{tab:existingsystems}
+\small
+\begin{tabular}{|p{2.3cm}|c|c|c|c|c|c|}
+\hline
+\textbf{Feature} & \textbf{Backtrader} & \textbf{Zipline} & \textbf{VectorBT} & \textbf{QuantConnect} & \textbf{Our System} \\
+\hline
+NSE Support & Partial & No & Partial & Limited & \textbf{Yes} \\
+\hline
+Cost Modeling & Yes & Yes & Partial & Yes & \textbf{Yes} \\
+\hline
+Benchmark & No & Partial & No & Yes & \textbf{Yes} \\
+\hline
+Experiment Suite & No & No & Partial & No & \textbf{Yes} \\
+\hline
+LLM Analysis & No & No & No & No & \textbf{Yes} \\
+\hline
+Agentic Loop & No & No & No & No & \textbf{Yes} \\
+\hline
+Web Dashboard & No & No & No & Yes & \textbf{Yes} \\
+\hline
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% End of Chapter 2

@@ -1,0 +1,155 @@
+% Main LaTeX Report - Institutional Equity Quantitative Backtesting & Research Framework
+% Fr. C. Rodrigues Institute of Technology, Vashi
+% Shankh / Decuple Internship 2026-27 (Project TE1)
+
+\documentclass[12pt]{report}
+
+% ==================== PACKAGES ====================
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[justification=centering]{caption}
+
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, calc}
+
+% ==================== PAGE GEOMETRY ====================
+\geometry{verbose, a4paper, tmargin=15mm, bmargin=30mm, lmargin=30mm, rmargin=20mm}
+\geometry{headheight=15pt}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+% ==================== CHAPTER TITLE FORMAT ====================
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\centering}
+  {\chaptertitlename\ \thechapter}{24pt}{\Huge}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Backtesting Equity Strategies}
+\lfoot{F.C.R.I.T, Vashi}
+\rfoot{\thepage}
+\renewcommand{\footrulewidth}{0.6pt}
+\renewcommand{\headrulewidth}{1.pt}
+
+% ==================== CODE LISTING STYLE ====================
+\definecolor{codebg}{RGB}{248,249,250}
+\definecolor{codegreen}{RGB}{39,174,96}
+\definecolor{codepurple}{RGB}{142,68,173}
+\definecolor{codegray}{RGB}{128,128,128}
+\definecolor{codeblue}{RGB}{41,128,185}
+
+\lstdefinestyle{pythonstyle}{
+    backgroundcolor=\color{codebg},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{codepurple}\bfseries,
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codeblue},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=4,
+    language=Python,
+    frame=single,
+    rulecolor=\color{codegray!40},
+    xleftmargin=15pt,
+    framexleftmargin=15pt
+}
+\lstset{style=pythonstyle}
+
+% ==================== HYPERREF CONFIG ====================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!70!black,
+    citecolor=green!50!black,
+    urlcolor=blue!80!black,
+    pdfauthor={Student Team},
+    pdftitle={Backtesting Equity Strategies for Indian Equities},
+    pdfsubject={TY Mini Project Report}
+}
+
+% ==================== DOCUMENT BEGIN ====================
+\begin{document}
+\pagestyle{plain}
+
+% Title Page
+\include{1Title}
+\pagenumbering{roman}
+
+% Approval & Declaration
+\include{2Approval}
+\include{3Declaration}
+
+% Abstract
+\newpage
+\addcontentsline{toc}{chapter}{Abstract}
+\include{Abstract}
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% List of Figures
+\addcontentsline{toc}{chapter}{List of Figures}
+\listoffigures
+\newpage
+
+% List of Tables
+\addcontentsline{toc}{chapter}{List of Tables}
+\listoftables
+\newpage
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+% ==================== CHAPTERS ====================
+\include{Chapter1Introduction}
+\include{Chapter2LiteratureSurvey}
+\include{Chapter3ProposedSystem}
+\include{Chapter4Design}
+\include{Chapter5ResultandDiscussion}
+\include{Chapter6Conclusion}
+
+% ==================== REFERENCES ====================
+\addcontentsline{toc}{chapter}{References}
+\bibliographystyle{ieeetr}
+\renewcommand\bibname{References}
+\bibliography{0Synopsis}
+
+% ==================== ACKNOWLEDGEMENT ====================
+\addcontentsline{toc}{chapter}{Acknowledgement}
+\include{Acknowledgment}
+
+% ==================== APPENDICES ====================
+\addcontentsline{toc}{chapter}{Appendix A: Timeline Chart}
+\include{appendixA}
+
+\addcontentsline{toc}{chapter}{Appendix B: Publication Details}
+\include{appendixB}
+
+\end{document}

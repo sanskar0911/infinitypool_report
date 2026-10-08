@@ -1,0 +1,69 @@
+% Chapter 1 Introduction
+
+\chapter[Introduction]{\centering Introduction}\label{chap1}
+\newpage
+
+\section{Background}
+
+Algorithmic trading and quantitative finance have transformed how institutional investors interact with global equity markets. In India, the National Stock Exchange (NSE) handles over 90\% of equity derivative trading volume, and systematic strategies are increasingly adopted by hedge funds, proprietary trading desks, and asset management companies. Backtesting---the process of simulating a trading strategy on historical market data---is a critical precondition before any strategy is deployed in live markets.
+
+A reliable backtesting framework must address several key challenges: accurate historical data handling, realistic execution cost modeling (including transaction commissions and market impact slippage), prevention of look-ahead bias and data snooping, robust out-of-sample validation, and comprehensive risk-adjusted performance measurement. Without these safeguards, a strategy that appears profitable in backtesting may fail catastrophically in live deployment due to overfitting, unrealistic assumptions, or market regime shifts.
+
+Modern quantitative research has increasingly incorporated Artificial Intelligence (AI) and Large Language Models (LLMs) into the research workflow. LLM-driven strategy evaluation provides qualitative insights that complement quantitative metrics, while agentic frameworks such as LangGraph enable autonomous, controlled research iterations that reduce manual parameter tuning while maintaining strict guardrails against overfitting.
+
+\section{Motivation}
+
+The motivation for this project stems from several key observations:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Lack of Production-Grade Open-Source Frameworks for Indian Equities:} Most open-source backtesting tools (Backtrader, Zipline, VectorBT) are calibrated for US equities and do not account for NSE-specific constraints such as lot sizes, Indian market holidays, and INR-denominated portfolio tracking.
+    
+    \item \textbf{Overfitting Risk in Academic Backtests:} Academic backtests frequently report inflated returns because they omit transaction costs, ignore slippage, perform unlimited parameter optimization, and lack out-of-sample validation protocols.
+    
+    \item \textbf{Gap Between Quantitative Metrics and Actionable Research:} Traditional backtesting outputs provide raw numbers (Sharpe Ratio, CAGR) without contextual evaluation. An LLM-augmented system can generate structured research reports with ratings, risk assessments, and actionable recommendations.
+    
+    \item \textbf{Emerging Agentic AI Workflows:} LangGraph and similar frameworks enable controlled loop engineering where an AI agent iteratively evaluates and refines a quantitative hypothesis with bounded iterations, providing a middle ground between manual research and brute-force optimization.
+\end{enumerate}
+
+\section{Aim and Objective}
+
+The primary aim of this project is to design and implement an institutional-grade, modular Python equity backtesting and AI-driven quantitative analysis framework for NSE-listed stocks with Nifty 50 benchmark comparison. The specific objectives are:
+
+\begin{enumerate}[label=\arabic*.]
+    \item Design a modular, extensible backtesting architecture using the Strategy Factory design pattern, supporting SMA Crossover, EMA Crossover, and RSI strategies.
+    
+    \item Implement a realistic execution engine modeling transaction costs (0.1\%), market slippage (0.05\%), configurable position sizing, stop-loss triggers, and take-profit triggers.
+    
+    \item Enforce portfolio-level constraints including liquidity filtering, maximum position caps, and rebalancing schedules (Daily, Weekly, Monthly).
+    
+    \item Compute comprehensive quantitative KPIs: CAGR, Sharpe Ratio, Sortino Ratio, Calmar Ratio, Maximum Drawdown, Win Rate, Profit Factor, Turnover, and Market Exposure.
+    
+    \item Implement rigorous benchmark comparison against Nifty 50 with Excess Return, Beta, Correlation, Tracking Error, and Information Ratio computation.
+    
+    \item Build a complete experiment suite with parameter sweeps, walk-forward validation, out-of-sample testing, robustness analysis, regime classification, and automated research warnings.
+    
+    \item Integrate LangGraph-based Loop Engineering for autonomous, bounded research iteration with traceable audit logs.
+    
+    \item Develop an interactive Streamlit dashboard for strategy configuration, backtest visualization, and report generation.
+    
+    \item Incorporate LLM-driven strategy analysis with structured JSON output schemas and fallback rule engines.
+\end{enumerate}
+
+\section{Report Outline}
+
+The remainder of this report is organized as follows:
+
+\begin{itemize}
+    \item \textbf{Chapter 2 -- Study of the System:} Reviews relevant literature on backtesting methodologies, technical analysis strategies, and AI-driven quantitative research. Analyzes existing systems and identifies their limitations.
+    
+    \item \textbf{Chapter 3 -- Proposed System:} Defines the problem statement, scope, and presents the proposed system architecture and feature set.
+    
+    \item \textbf{Chapter 4 -- Design of the System:} Details the requirement engineering process, UML diagrams, system architecture, hardware/software requirements, and cost analysis.
+    
+    \item \textbf{Chapter 5 -- Results and Discussion:} Presents backtest results, performance charts, benchmark comparisons, experiment outputs, and system screenshots with sample code implementations.
+    
+    \item \textbf{Chapter 6 -- Conclusion \& Future Scope:} Summarizes the project contributions, limitations, and directions for future research and development.
+\end{itemize}
+
+
+%%%% End of Chapter 1
